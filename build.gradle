@@ -1,0 +1,28 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.4.1'
+}
+
+subprojects {
+
+    ext { springBootVersion = '1.5.2.RELEASE' }
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    group = 'com.sfkj'
+    version = '0.0.1'
+
+    repositories { maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'} }
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok:1.16.16"
+    }
+
+}

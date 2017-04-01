@@ -1,0 +1,41 @@
+buildscript {
+    repositories { maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'} }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('se.transmode.gradle:gradle-docker:1.2')
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'docker'
+
+//jar {
+//    baseName = 'sf-other-gyzb-application'
+//    version = '0.0.1-SNAPSHOT'
+//}
+
+bootRun {
+    addResources = true
+}
+
+task buildDocker(type: Docker, dependsOn: build) {
+    push = true
+    applicationName = jar.baseName
+    dockerfile = file('src/main/docker/Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
+    }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile project(':library')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
