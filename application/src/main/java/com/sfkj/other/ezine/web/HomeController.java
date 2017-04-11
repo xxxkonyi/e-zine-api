@@ -3,6 +3,7 @@ package com.sfkj.other.ezine.web;
 import com.google.common.collect.ImmutableMap;
 import com.querydsl.core.types.Predicate;
 import com.sfkj.other.ezine.query.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
@@ -11,16 +12,13 @@ import org.springframework.stereotype.Controller;
 
 import java.util.Map;
 
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Controller
 public class HomeController {
 
-    @Autowired
     private AdvertisementRepository advertisementRepository;
-    @Autowired
     private CategoryRepository categoryRepository;
-    @Autowired
     private BookRepository bookRepository;
-    @Autowired
     private ArticleRepository articleRepository;
 
     @MessageMapping("/health")

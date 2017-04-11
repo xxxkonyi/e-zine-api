@@ -1,12 +1,15 @@
 package com.sfkj.other.ezine.query;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 @Data
+@RequiredArgsConstructor(onConstructor = @__(@PersistenceConstructor))
 @Document
 public class Article {
 
@@ -15,8 +18,8 @@ public class Article {
     private String bookId;
     private List<String> categoryId;
     private String title;
-    private String editor;
-    private String publicationTime;
+    private String publisher;
+    private String publishedDate;
     private String content;
 
 }
