@@ -5,7 +5,7 @@ buildscript {
 plugins { id "io.spring.dependency-management" version "1.0.0.RELEASE" }
 
 //jar {
-//    baseName = 'sf-other-gyzb-library'
+//    baseName = 'sf-other-ezine-library'
 //    version = '0.0.1-SNAPSHOT'
 //}
 

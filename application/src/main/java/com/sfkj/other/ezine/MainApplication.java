@@ -1,37 +1,26 @@
-package com.sfkj.other.gyzb;
+package com.sfkj.other.ezine;
 
-import hello.service.Service;
-import hello.service.ServiceConfiguration;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 
 @SpringBootApplication
-@Import(ServiceConfiguration.class)
+//@Import(ServiceConfiguration.class)
 @RestController
 @Slf4j
 public class MainApplication {
 
-    private final Service service;
-
-    @Autowired
-    public MainApplication(Service service) {
-        this.service = service;
-    }
-
-    @GetMapping("/")
-    public String home() {
-        return service.message();
-    }
+//    @RequestMapping("/")
+//    public void index(HttpServletResponse response) throws IOException {
+//        InetAddress inetAddress = InetAddress.getLocalHost();
+//        response.getWriter().println("Server is live! hostName:" + inetAddress.getHostName());
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(MainApplication.class, args);

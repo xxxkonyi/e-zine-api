@@ -1,4 +1,4 @@
-package com.sfkj.other.gyzb;
+package com.sfkj.other.ezine;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;

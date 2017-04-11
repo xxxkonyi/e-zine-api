@@ -1,17 +1,14 @@
-package com.sfkj.other.gyzb;
+package com.sfkj.other.ezine.query;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 @Data
-public class User {
+public class Category {
 
     @Id
     private String id;
-    private String openId;
     private String name;
-    private String avatar;
-
-    private String userInfo;
+    private Double sequence;
 
 }
