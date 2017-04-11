@@ -11,16 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 
 @SpringBootApplication
-//@Import(ServiceConfiguration.class)
-@RestController
 @Slf4j
 public class MainApplication {
-
-//    @RequestMapping("/")
-//    public void index(HttpServletResponse response) throws IOException {
-//        InetAddress inetAddress = InetAddress.getLocalHost();
-//        response.getWriter().println("Server is live! hostName:" + inetAddress.getHostName());
-//    }
 
     public static void main(String[] args) {
         SpringApplication.run(MainApplication.class, args);

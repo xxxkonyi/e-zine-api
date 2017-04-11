@@ -4,10 +4,6 @@ task wrapper(type: Wrapper) {
 
 subprojects {
 
-    ext {
-        springBootVersion = '1.5.2.RELEASE'
-    }
-
     apply plugin: 'java'
     apply plugin: 'idea'
 
@@ -27,9 +23,9 @@ subprojects {
     }
 
     dependencies {
-        compileOnly "org.projectlombok:lombok:1.16.16"
-        compile 'org.apache.commons:commons-lang3:3.3.2'
-        compile 'com.google.guava:guava:18.0'
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        compile "org.apache.commons:commons-lang3:${lang3Version}"
+        compile "com.google.guava:guava:${guavaVersion}"
     }
 
 }
