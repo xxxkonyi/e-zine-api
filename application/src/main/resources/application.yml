@@ -12,6 +12,9 @@ spring:
     application:
         name: z-zine
 
+management:
+    context-path: /manage
+
     data:
       mongodb:
-        uri: mongodb://127.0.0.1:27017/z-zine
+        uri: mongodb://127.0.0.1:27017/admin

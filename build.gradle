@@ -5,7 +5,7 @@ task wrapper(type: Wrapper) {
 subprojects {
 
     ext {
-        springBootVersion = '1.5.2.RELEASE'
+        springBootVersion = '2.0.0.BUILD-SNAPSHOT'
     }
 
     apply plugin: 'java'
@@ -21,7 +21,10 @@ subprojects {
     group = 'com.sfkj'
     version = '0.0.1'
 
-    repositories { maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' } }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://repo.spring.io/libs-snapshot' }
+    }
 
     dependencies {
         compileOnly "org.projectlombok:lombok:1.16.16"

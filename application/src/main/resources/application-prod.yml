@@ -11,4 +11,4 @@
 spring:
     data:
       mongodb:
-        uri: mongodb://root:Qinggan2017@dds-bp1edb000e17e0f41.mongodb.rds.aliyuncs.com:3717,dds-bp1edb000e17e0f42.mongodb.rds.aliyuncs.com:3717/e-zine?replicaSet=mgset-3150979
+        uri: mongodb://root:Nanyuan2017@dds-bp1edb000e17e0f41.mongodb.rds.aliyuncs.com:3717,dds-bp1edb000e17e0f42.mongodb.rds.aliyuncs.com:3717/e-zine?replicaSet=mgset-3150979
