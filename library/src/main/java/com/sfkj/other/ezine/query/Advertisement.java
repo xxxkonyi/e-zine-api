@@ -10,5 +10,6 @@ public class Advertisement {
     private String id;
     private String location;
     private String imageUrl;
+    private String articleId;
 
 }
