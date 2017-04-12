@@ -8,13 +8,16 @@
 # Full reference is available at:
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
-spring:
-    application:
-        name: z-zine
 
 management:
     context-path: /manage
 
+spring:
+    application:
+        name: z-zine
+
     data:
-      mongodb:
-        uri: mongodb://127.0.0.1:27017/admin
+        rest:
+            base-path: /rest-api
+        mongodb:
+            uri: mongodb://127.0.0.1:27017/admin
