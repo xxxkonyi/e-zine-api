@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,6 +52,12 @@ public class HomeController {
     @RequestMapping("/articles")
     public Iterable<Article> articles(@QuerydslPredicate(root = Article.class) Predicate predicate, Pageable pageable) {
         return articleRepository.findAll(predicate, pageable);
+    }
+
+    @MessageMapping("/articles/{id}")
+    @RequestMapping("/articles/{id}")
+    public Article article(@PathVariable String id) {
+        return articleRepository.findOne(id);
     }
 
 }
