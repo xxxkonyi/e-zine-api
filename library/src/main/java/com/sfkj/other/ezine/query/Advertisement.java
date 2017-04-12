@@ -7,9 +7,8 @@ import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@RequiredArgsConstructor(onConstructor = @__(@PersistenceConstructor))
 @Document
-public class Advertisement {
+public class Advertisement implements java.io.Serializable {
 
     @Id
     private String id;

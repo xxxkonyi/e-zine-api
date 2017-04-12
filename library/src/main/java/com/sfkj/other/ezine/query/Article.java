@@ -9,9 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Data
-@RequiredArgsConstructor(onConstructor = @__(@PersistenceConstructor))
 @Document
-public class Article {
+public class Article implements java.io.Serializable {
 
     @Id
     private String id;
