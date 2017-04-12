@@ -13,6 +13,7 @@ public class Book implements java.io.Serializable {
     @Id
     private String id;
     private String name;
+    private String coverUrl;
     private String publisher;
     private String publishedDate;
 
