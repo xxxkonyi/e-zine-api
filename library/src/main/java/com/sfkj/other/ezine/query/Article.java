@@ -15,7 +15,7 @@ public class Article implements java.io.Serializable {
     @Id
     private String id;
     private String bookId;
-    private List<String> categoryId;
+    private List<String> categoryIds;
     private String title;
     private String publisher;
     private String publishedDate;
