@@ -24,6 +24,7 @@ subprojects {
 
     dependencies {
         compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        compile "joda-time:joda-time:2.7"
         compile "org.apache.commons:commons-lang3:${lang3Version}"
         compile "com.google.guava:guava:${guavaVersion}"
     }

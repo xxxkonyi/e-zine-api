@@ -7,4 +7,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface AdvertisementRepository extends MongoRepository<Advertisement, String>, QueryDslPredicateExecutor<Advertisement> {
 
+    Advertisement findByLocation(String location);
+
 }

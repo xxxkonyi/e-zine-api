@@ -7,4 +7,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface ArticleRepository extends MongoRepository<Article, String>, QueryDslPredicateExecutor<Article> {
 
+    Article findByNumber(String number);
+
 }

@@ -32,7 +32,7 @@ public class HomeController {
 
     @MessageMapping("/advertisements")
     @RequestMapping("/advertisements")
-    public Iterable<Advertisement> advertisementRepository(@QuerydslPredicate(root = Advertisement.class) Predicate predicate) {
+    public Iterable<Advertisement> advertisements(@QuerydslPredicate(root = Advertisement.class) Predicate predicate) {
         return advertisementRepository.findAll(predicate);
     }
 
@@ -54,10 +54,10 @@ public class HomeController {
         return articleRepository.findAll(predicate, pageable);
     }
 
-    @MessageMapping("/articles/{id}")
-    @RequestMapping("/articles/{id}")
-    public Article article(@PathVariable String id) {
-        return articleRepository.findOne(id);
+    @MessageMapping("/articles/{number}")
+    @RequestMapping("/articles/{number}")
+    public Article article(@PathVariable String number) {
+        return articleRepository.findByNumber(number);
     }
 
 }
