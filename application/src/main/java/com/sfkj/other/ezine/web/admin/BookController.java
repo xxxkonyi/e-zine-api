@@ -4,12 +4,13 @@ import com.querydsl.core.types.Predicate;
 import com.sfkj.other.ezine.query.Book;
 import com.sfkj.other.ezine.query.BookRepository;
 import lombok.RequiredArgsConstructor;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
@@ -39,8 +40,8 @@ public class BookController {
         book.setPublisher(dto.getPublisher());
         book.setPublishedDate(dto.getPublishedDate());
 
-        book.setCreatedTime(DateTime.now());
-        book.setUpdatedTime(DateTime.now());
+        book.setCreatedTime(new Date());
+        book.setUpdatedTime(new Date());
         bookRepository.save(book);
     }
 
@@ -62,7 +63,7 @@ public class BookController {
         book.setPublisher(dto.getPublisher());
         book.setPublishedDate(dto.getPublishedDate());
 
-        book.setUpdatedTime(DateTime.now());
+        book.setUpdatedTime(new Date());
         bookRepository.save(book);
     }
 

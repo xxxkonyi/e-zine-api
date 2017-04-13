@@ -4,12 +4,14 @@ import com.querydsl.core.types.Predicate;
 import com.sfkj.other.ezine.query.Category;
 import com.sfkj.other.ezine.query.CategoryRepository;
 import lombok.RequiredArgsConstructor;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.Instant;
+import java.util.Date;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
@@ -35,8 +37,8 @@ public class CategoryController {
         category.setName(dto.getName());
         category.setSequence(dto.getSequence());
 
-        category.setCreatedTime(DateTime.now());
-        category.setUpdatedTime(DateTime.now());
+        category.setCreatedTime(new Date());
+        category.setUpdatedTime(new Date());
         categoryRepository.save(category);
     }
 
@@ -55,7 +57,7 @@ public class CategoryController {
         category.setName(dto.getName());
         category.setSequence(dto.getSequence());
 
-        category.setUpdatedTime(DateTime.now());
+        category.setUpdatedTime(new Date());
         categoryRepository.save(category);
     }
 

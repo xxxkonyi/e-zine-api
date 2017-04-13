@@ -4,12 +4,13 @@ import com.querydsl.core.types.Predicate;
 import com.sfkj.other.ezine.query.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
@@ -36,8 +37,8 @@ public class AdvertisementController {
         advertisement.setLocation(StringUtils.isEmpty(dto.getLocation()) ? "首页Banner" : dto.getLocation());
         advertisement.setImageUrl(dto.getImageUrl());
 
-        advertisement.setCreatedTime(DateTime.now());
-        advertisement.setUpdatedTime(DateTime.now());
+        advertisement.setCreatedTime(new Date());
+        advertisement.setUpdatedTime(new Date());
         advertisementRepository.save(advertisement);
     }
 
@@ -57,7 +58,7 @@ public class AdvertisementController {
         advertisement.setLocation(StringUtils.isEmpty(dto.getLocation()) ? "首页Banner" : dto.getLocation());
         advertisement.setImageUrl(dto.getImageUrl());
 
-        advertisement.setUpdatedTime(DateTime.now());
+        advertisement.setUpdatedTime(new Date());
         advertisementRepository.save(advertisement);
     }
 

@@ -4,12 +4,13 @@ import com.querydsl.core.types.Predicate;
 import com.sfkj.other.ezine.query.Article;
 import com.sfkj.other.ezine.query.ArticleRepository;
 import lombok.RequiredArgsConstructor;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
@@ -42,8 +43,8 @@ public class ArticleController {
         article.setPublisher(dto.getPublisher());
         article.setPublishedDate(dto.getPublishedDate());
 
-        article.setCreatedTime(DateTime.now());
-        article.setUpdatedTime(DateTime.now());
+        article.setCreatedTime(new Date());
+        article.setUpdatedTime(new Date());
         articleRepository.save(article);
     }
 
@@ -67,7 +68,7 @@ public class ArticleController {
         article.setPublisher(dto.getPublisher());
         article.setPublishedDate(dto.getPublishedDate());
 
-        article.setUpdatedTime(DateTime.now());
+        article.setUpdatedTime(new Date());
         articleRepository.save(article);
     }
 
