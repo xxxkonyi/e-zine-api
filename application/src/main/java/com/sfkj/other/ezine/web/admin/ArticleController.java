@@ -6,6 +6,7 @@ import com.sfkj.other.ezine.query.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class ArticleController {
     private final ArticleRepository articleRepository;
 
     @RequestMapping
-    public Iterable<Article> list(@QuerydslPredicate(root = Article.class) Predicate predicate) {
+    public Iterable<Article> list(@QuerydslPredicate(root = Article.class) Predicate predicate, Pageable pageable) {
         return articleRepository.findAll(predicate);
     }
 
