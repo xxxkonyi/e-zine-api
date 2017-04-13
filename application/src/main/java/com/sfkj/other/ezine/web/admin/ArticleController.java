@@ -58,7 +58,7 @@ public class ArticleController {
     public void change(@PathVariable String identifier,
                        @RequestBody Article dto) {
         Article article = new Article();
-        article.setCategoryId(dto.getCategoryId());
+        article.setCategoryId(identifier);
         article.setBookId(dto.getBookId());
         article.setTitle(dto.getTitle());
         article.setCoverUrl(dto.getCoverUrl());

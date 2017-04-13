@@ -52,7 +52,7 @@ public class AdvertisementController {
     public void change(@PathVariable String identifier,
                        @RequestBody Advertisement dto) {
         Advertisement advertisement = new Advertisement();
-        advertisement.setId(dto.getId());
+        advertisement.setId(identifier);
         advertisement.setArticleNumber(dto.getArticleNumber());
         advertisement.setLocation(StringUtils.isEmpty(dto.getLocation()) ? "首页Banner" : dto.getLocation());
         advertisement.setImageUrl(dto.getImageUrl());

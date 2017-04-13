@@ -51,7 +51,7 @@ public class CategoryController {
     public void change(@PathVariable String identifier,
                        @RequestBody Category dto) {
         Category category = new Category();
-        category.setId(dto.getId());
+        category.setId(identifier);
         category.setName(dto.getName());
         category.setSequence(dto.getSequence());
 

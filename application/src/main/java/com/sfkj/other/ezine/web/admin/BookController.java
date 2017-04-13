@@ -55,7 +55,7 @@ public class BookController {
     public void change(@PathVariable String identifier,
                        @RequestBody Book dto) {
         Book book = new Book();
-        book.setId(dto.getId());
+        book.setId(identifier);
         book.setJournalNumber(dto.getJournalNumber());
         book.setName(dto.getName());
         book.setCoverUrl(dto.getCoverUrl());
