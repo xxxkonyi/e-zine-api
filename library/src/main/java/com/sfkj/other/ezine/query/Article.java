@@ -18,9 +18,10 @@ public class Article implements java.io.Serializable {
      */
     private String number, title, coverUrl;
     private Long viewCount;
-    private String content;
     private String publisher;
     private Date publishedDate;
     private Date createdTime, updatedTime;
 
+    // By Query
+    private String content;
 }

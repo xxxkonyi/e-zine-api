@@ -2,6 +2,8 @@ package com.sfkj.other.ezine.web.admin;
 
 import com.querydsl.core.types.Predicate;
 import com.sfkj.other.ezine.query.Article;
+import com.sfkj.other.ezine.query.ArticleContent;
+import com.sfkj.other.ezine.query.ArticleContentRepository;
 import com.sfkj.other.ezine.query.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import java.util.Date;
 public class ArticleController {
 
     private final ArticleRepository articleRepository;
+    private final ArticleContentRepository articleContentRepository;
 
     @RequestMapping
     public Iterable<Article> list(@QuerydslPredicate(root = Article.class) Predicate predicate, Pageable pageable) {
@@ -39,13 +42,19 @@ public class ArticleController {
         article.setTitle(dto.getTitle());
         article.setCoverUrl(dto.getCoverUrl());
         article.setViewCount(dto.getViewCount());
-        article.setContent(dto.getContent());
         article.setPublisher(dto.getPublisher());
         article.setPublishedDate(dto.getPublishedDate());
 
         article.setCreatedTime(new Date());
         article.setUpdatedTime(new Date());
         articleRepository.save(article);
+
+        ArticleContent content = new ArticleContent();
+        content.setArticleId(article.getId());
+        content.setContent(dto.getContent());
+        article.setCreatedTime(new Date());
+        article.setUpdatedTime(new Date());
+        articleContentRepository.save(content);
     }
 
     @RequestMapping(value = "/{identifier}", method = {RequestMethod.DELETE})
@@ -64,12 +73,16 @@ public class ArticleController {
         article.setTitle(dto.getTitle());
         article.setCoverUrl(dto.getCoverUrl());
         article.setViewCount(dto.getViewCount());
-        article.setContent(dto.getContent());
         article.setPublisher(dto.getPublisher());
         article.setPublishedDate(dto.getPublishedDate());
 
         article.setUpdatedTime(new Date());
         articleRepository.save(article);
+
+        ArticleContent content = articleContentRepository.findByArticleId(article.getId());
+        content.setContent(dto.getContent());
+        article.setUpdatedTime(new Date());
+        articleContentRepository.save(content);
     }
 
 }
