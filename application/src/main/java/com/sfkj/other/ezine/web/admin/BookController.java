@@ -20,7 +20,7 @@ public class BookController {
 
     @RequestMapping
     public Iterable<Book> list(@QuerydslPredicate(root = Book.class) Predicate predicate, Pageable pageable) {
-        return bookRepository.findAll(predicate);
+        return bookRepository.findAll(predicate, pageable);
     }
 
     @RequestMapping(value = "/{identifier}", method = RequestMethod.GET)
