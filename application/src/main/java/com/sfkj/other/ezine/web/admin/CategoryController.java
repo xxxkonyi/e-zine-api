@@ -4,12 +4,11 @@ import com.querydsl.core.types.Predicate;
 import com.sfkj.other.ezine.query.Category;
 import com.sfkj.other.ezine.query.CategoryRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
-import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -20,8 +19,8 @@ public class CategoryController {
     private final CategoryRepository categoryRepository;
 
     @RequestMapping
-    public Iterable<Category> list(@QuerydslPredicate(root = Category.class) Predicate predicate) {
-        return categoryRepository.findAll(predicate);
+    public Iterable<Category> list(@QuerydslPredicate(root = Category.class) Predicate predicate, Sort sort) {
+        return categoryRepository.findAll(predicate, sort);
     }
 
     @RequestMapping(value = "/{identifier}", method = RequestMethod.GET)

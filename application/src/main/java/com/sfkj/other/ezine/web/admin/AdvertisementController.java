@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
-import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -19,8 +19,8 @@ public class AdvertisementController {
     private final AdvertisementRepository advertisementRepository;
 
     @RequestMapping
-    public Iterable<Advertisement> list(@QuerydslPredicate(root = Advertisement.class) Predicate predicate) {
-        return advertisementRepository.findAll(predicate);
+    public Iterable<Advertisement> list(@QuerydslPredicate(root = Advertisement.class) Predicate predicate, Sort sort) {
+        return advertisementRepository.findAll(predicate, sort);
     }
 
     @RequestMapping(value = "/{identifier}", method = RequestMethod.GET)
