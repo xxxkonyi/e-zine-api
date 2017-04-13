@@ -18,6 +18,7 @@ public class AdvertisementController {
 
     private final AdvertisementRepository advertisementRepository;
 
+    @RequestMapping
     public Iterable<Advertisement> list(@QuerydslPredicate(root = Advertisement.class) Predicate predicate) {
         return advertisementRepository.findAll(predicate);
     }

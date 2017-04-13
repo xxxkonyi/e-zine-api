@@ -19,6 +19,7 @@ public class CategoryController {
 
     private final CategoryRepository categoryRepository;
 
+    @RequestMapping
     public Iterable<Category> list(@QuerydslPredicate(root = Category.class) Predicate predicate) {
         return categoryRepository.findAll(predicate);
     }

@@ -17,6 +17,7 @@ public class ArticleController {
 
     private final ArticleRepository articleRepository;
 
+    @RequestMapping
     public Iterable<Article> list(@QuerydslPredicate(root = Article.class) Predicate predicate) {
         return articleRepository.findAll(predicate);
     }

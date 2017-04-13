@@ -17,6 +17,7 @@ public class BookController {
 
     private final BookRepository bookRepository;
 
+    @RequestMapping
     public Iterable<Book> list(@QuerydslPredicate(root = Book.class) Predicate predicate) {
         return bookRepository.findAll(predicate);
     }
