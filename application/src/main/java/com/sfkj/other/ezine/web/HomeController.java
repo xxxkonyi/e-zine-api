@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
+import java.util.Objects;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
@@ -23,6 +24,7 @@ public class HomeController {
     private final CategoryRepository categoryRepository;
     private final BookRepository bookRepository;
     private final ArticleRepository articleRepository;
+    private final ArticleContentRepository articleContentRepository;
 
     @MessageMapping("/health")
     @RequestMapping("/health")
@@ -57,7 +59,15 @@ public class HomeController {
     @MessageMapping("/articles/{number}")
     @RequestMapping("/articles/{number}")
     public Article article(@PathVariable String number) {
-        return articleRepository.findByNumber(number);
+        Article article = articleRepository.findByNumber(number);
+        if (Objects.isNull(article)) {
+            return article;
+        }
+        ArticleContent content = articleContentRepository.findByArticleId(article.getId());
+        if (Objects.nonNull(content)) {
+            article.setContent(content.getContent());
+        }
+        return article;
     }
 
 }
