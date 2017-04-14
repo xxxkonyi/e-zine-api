@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.Objects;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
@@ -80,6 +81,9 @@ public class ArticleController {
         articleRepository.save(article);
 
         ArticleContent content = articleContentRepository.findByArticleId(article.getId());
+        if (Objects.isNull(content)) {
+            content = new ArticleContent();
+        }
         content.setContent(dto.getContent());
         article.setUpdatedTime(new Date());
         articleContentRepository.save(content);
