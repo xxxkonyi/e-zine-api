@@ -35,7 +35,7 @@ public class ArticleController {
 
     @RequestMapping(method = {RequestMethod.POST})
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Article dto) {
+    public Article create(@RequestBody Article dto) {
         Article article = new Article();
         article.setCategoryId(dto.getCategoryId());
         article.setBookId(dto.getBookId());
@@ -56,6 +56,8 @@ public class ArticleController {
         article.setCreatedTime(new Date());
         article.setUpdatedTime(new Date());
         articleContentRepository.save(content);
+
+        return article;
     }
 
     @RequestMapping(value = "/{identifier}", method = {RequestMethod.DELETE})

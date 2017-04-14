@@ -31,7 +31,7 @@ public class BookController {
 
     @RequestMapping(method = {RequestMethod.POST})
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Book dto) {
+    public Book create(@RequestBody Book dto) {
         Book book = new Book();
         book.setNumber(String.valueOf(bookRepository.count() + 1));
         book.setJournalNumber(dto.getJournalNumber());
@@ -43,6 +43,8 @@ public class BookController {
         book.setCreatedTime(new Date());
         book.setUpdatedTime(new Date());
         bookRepository.save(book);
+
+        return book;
     }
 
     @RequestMapping(value = "/{identifier}", method = {RequestMethod.DELETE})

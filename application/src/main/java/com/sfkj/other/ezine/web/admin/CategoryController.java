@@ -32,7 +32,7 @@ public class CategoryController {
 
     @RequestMapping(method = {RequestMethod.POST})
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Category dto) {
+    public Category create(@RequestBody Category dto) {
         Category category = new Category();
         category.setName(dto.getName());
         category.setSequence(dto.getSequence());
@@ -40,6 +40,8 @@ public class CategoryController {
         category.setCreatedTime(new Date());
         category.setUpdatedTime(new Date());
         categoryRepository.save(category);
+
+        return category;
     }
 
     @RequestMapping(value = "/{identifier}", method = {RequestMethod.DELETE})

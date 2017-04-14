@@ -31,7 +31,7 @@ public class AdvertisementController {
 
     @RequestMapping(method = {RequestMethod.POST})
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Advertisement dto) {
+    public Advertisement create(@RequestBody Advertisement dto) {
         Advertisement advertisement = new Advertisement();
         advertisement.setArticleNumber(dto.getArticleNumber());
         advertisement.setLocation(StringUtils.isEmpty(dto.getLocation()) ? "首页Banner" : dto.getLocation());
@@ -40,6 +40,8 @@ public class AdvertisementController {
         advertisement.setCreatedTime(new Date());
         advertisement.setUpdatedTime(new Date());
         advertisementRepository.save(advertisement);
+
+        return advertisement;
     }
 
     @RequestMapping(value = "/{identifier}", method = {RequestMethod.DELETE})
