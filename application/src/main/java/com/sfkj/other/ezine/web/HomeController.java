@@ -7,10 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.http.HttpStatus;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.Objects;
@@ -61,6 +60,9 @@ public class HomeController {
     public Article article(@PathVariable String number) {
         Article article = articleRepository.findByNumber(number);
         if (Objects.isNull(article)) {
+            article = articleRepository.findOne(number);
+        }
+        if (Objects.isNull(article)) {
             return article;
         }
         ArticleContent content = articleContentRepository.findByArticleId(article.getId());
@@ -68,6 +70,16 @@ public class HomeController {
             article.setContent(content.getContent());
         }
         return article;
+    }
+
+    @RequestMapping(value = "/articles/{identifier}/viewCount", method = {RequestMethod.POST})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void view(@PathVariable String identifier) {
+        Article article = articleRepository.findOne(identifier);
+        if (Objects.isNull(article)) {
+            return;
+        }
+        article.setViewCount(article.getViewCount() + 1);
     }
 
 }
