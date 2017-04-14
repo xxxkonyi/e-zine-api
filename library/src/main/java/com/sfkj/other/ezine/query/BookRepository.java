@@ -7,4 +7,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface BookRepository extends MongoRepository<Book, String>, QueryDslPredicateExecutor<Book> {
 
+    Book findByNumber(String number);
+
 }

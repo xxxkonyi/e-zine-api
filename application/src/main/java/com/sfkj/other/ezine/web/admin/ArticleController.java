@@ -51,7 +51,14 @@ public class ArticleController {
     public Article create(@RequestBody Article dto) {
         Article article = new Article();
         article.setCategoryId(dto.getCategoryId());
-        article.setBookId(dto.getBookId());
+
+        Book book = bookRepository.findByNumber(dto.getBookId());
+        if (Objects.isNull(book)) {
+            article.setBookId(book.getId());
+        }
+        if (Objects.nonNull(book)) {
+            article.setBookId(book.getId());
+        }
         article.setNumber(String.valueOf(articleRepository.count() + 1));
         article.setTitle(dto.getTitle());
         article.setCoverUrl(dto.getCoverUrl());
