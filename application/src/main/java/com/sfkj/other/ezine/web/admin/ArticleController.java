@@ -1,10 +1,7 @@
 package com.sfkj.other.ezine.web.admin;
 
 import com.querydsl.core.types.Predicate;
-import com.sfkj.other.ezine.query.Article;
-import com.sfkj.other.ezine.query.ArticleContent;
-import com.sfkj.other.ezine.query.ArticleContentRepository;
-import com.sfkj.other.ezine.query.ArticleRepository;
+import com.sfkj.other.ezine.query.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +19,8 @@ public class ArticleController {
 
     private final ArticleRepository articleRepository;
     private final ArticleContentRepository articleContentRepository;
+    private final BookRepository bookRepository;
+    private final CategoryRepository categoryRepository;
 
     @RequestMapping
     public Iterable<Article> list(@QuerydslPredicate(root = Article.class) Predicate predicate, Pageable pageable) {
@@ -30,7 +29,21 @@ public class ArticleController {
 
     @RequestMapping(value = "/{identifier}", method = RequestMethod.GET)
     public Article get(@PathVariable String identifier) {
-        return articleRepository.findOne(identifier);
+        Article article = articleRepository.findOne(identifier);
+        if (Objects.isNull(article)) {
+            return article;
+        }
+
+        Book book = bookRepository.findOne(article.getBookId());
+        if (Objects.nonNull(book)) {
+            article.setBook(book);
+        }
+        Category category = categoryRepository.findOne(article.getCategoryId());
+        if (Objects.nonNull(category)) {
+            article.setCategory(category);
+        }
+
+        return article;
     }
 
     @RequestMapping(method = {RequestMethod.POST})

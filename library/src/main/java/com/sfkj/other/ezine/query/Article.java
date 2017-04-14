@@ -24,4 +24,6 @@ public class Article implements java.io.Serializable {
 
     // By Query
     private String content;
+    private Category category;
+    private Book book;
 }
