@@ -4,13 +4,17 @@ import com.querydsl.core.types.Predicate;
 import com.sfkj.other.ezine.query.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
@@ -24,7 +28,9 @@ public class ArticleController {
 
     @RequestMapping
     public Iterable<Article> list(@QuerydslPredicate(root = Article.class) Predicate predicate, Pageable pageable) {
-        return articleRepository.findAll(predicate, pageable);
+        Page<Article> page = articleRepository.findAll(predicate, pageable);
+        List<Article> dtos = page.getContent().stream().map(t->get(t.getId())).collect(Collectors.toList());
+        return new PageImpl<>(dtos, pageable, page.getTotalElements());
     }
 
     @RequestMapping(value = "/{identifier}", method = RequestMethod.GET)
