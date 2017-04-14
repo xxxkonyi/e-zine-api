@@ -92,7 +92,13 @@ public class ArticleController {
                        @RequestBody Article dto) {
         Article article = new Article();
         article.setCategoryId(identifier);
-        article.setBookId(dto.getBookId());
+        Book book = bookRepository.findByNumber(dto.getBookId());
+        if (Objects.nonNull(book)) {
+            article.setBookId(book.getId());
+        }
+        if (Objects.nonNull(book)) {
+            article.setBookId(book.getId());
+        }
         article.setTitle(dto.getTitle());
         article.setCoverUrl(dto.getCoverUrl());
         article.setViewCount(dto.getViewCount());
