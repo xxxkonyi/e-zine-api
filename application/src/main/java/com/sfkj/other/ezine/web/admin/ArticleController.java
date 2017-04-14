@@ -53,7 +53,7 @@ public class ArticleController {
         article.setCategoryId(dto.getCategoryId());
 
         Book book = bookRepository.findByNumber(dto.getBookId());
-        if (Objects.isNull(book)) {
+        if (Objects.nonNull(book)) {
             article.setBookId(book.getId());
         }
         if (Objects.nonNull(book)) {
